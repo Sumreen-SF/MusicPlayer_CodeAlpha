@@ -2,6 +2,9 @@
 
 Groove is a vinyl-themed music player you run locally in a browser. It has playlists, a signature "Groove Notes" feature for pinning timestamped notes onto a song, an audio-reactive waveform, and pages for browsing, favoriting, and charting your most-played tracks. Everything is built with plain HTML, CSS, and JavaScript, no frameworks or build step required.
 
+## Live Link
+🔗: https://sumreen-sf.github.io/MusicPlayer_CodeAlpha/
+
 ## Getting started
 
 The app needs to be served by a local web server. Opening `index.html` directly by double-clicking it (a `file://` URL) will not work, because the browser blocks the AudioContext and CORS behavior the player relies on.
@@ -29,7 +32,7 @@ Each track can have its own cover image too. If you don't set one, Groove genera
 
 ## Features
 
-**Playlists.** Create as many as you like, rename nothing (yet), and delete any playlist you no longer want. Groove always keeps at least one playlist around so you're never left without a home for your tracks.
+**Playlists.** Create as many as you like, and delete any playlist you no longer want. Groove always keeps at least one playlist around so you're never left without a home for your tracks.
 
 **Groove Notes.** Pin a short note to any point in a song. A small gold marker appears on the seek bar. Hover it to read the note, click it to jump straight to that moment. Useful for marking a favorite bridge, a lyric you want to remember, or a cue for a DJ set.
 
