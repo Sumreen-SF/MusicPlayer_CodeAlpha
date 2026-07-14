@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Groove </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="disc"></div>
+      <div>
+        <h1>Groove</h1>
+        <span>Vinyl Streaming</span>
+      </div>
+    </div>
+
+    <nav class="primary">
+      <a href="#" class="active" data-view="now-playing">▸ Now Playing</a>
+      <a href="#" data-view="browse">◇ Browse</a>
+      <a href="#" data-view="favorites">♥ Favorites</a>
+      <a href="#" data-view="charts">☰ Charts</a>
+    </nav>
+
+    <div class="playlists">
+      <div class="label">Playlists</div>
+      <div id="playlistList"></div>
+      <button id="newPlaylistBtn">+ New Playlist</button>
+    </div>
+
+    <div class="sidebar-foot">33⅓ RPM · SIDE A</div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <div class="topbar">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      </button>
+      <h2 id="playlistTitle">Emerald Mix</h2>
+      <button class="add-music-btn" id="addMusicBtn">+ Add Music</button>
+    </div>
+
+    <div class="stage" id="viewNowPlaying">
+
+      <!-- LEFT: player + queue -->
+      <div>
+        <div class="player-card">
+          <div class="now-label">Now Playing</div>
+          <div class="track-row">
+            <div id="artSlot" class="art-wrap"></div>
+            <div class="track-meta">
+              <h3 id="trackTitle">—</h3>
+              <p id="trackArtist">—</p>
+            </div>
+          </div>
+
+          <div class="time-row">
+            <span id="curTime">0:00</span>
+            <div class="seek-wrap" id="seekWrap">
+              <input type="range" class="seek" id="seek" min="0" max="100" value="0">
+              <div class="seek-fill" id="seekFill"></div>
+              <!-- note pins injected here -->
+            </div>
+            <span id="durTime">0:00</span>
+          </div>
+
+          <div class="lower-row">
+            <div class="rpm-tag" id="rpmTag">33 RPM</div>
+            <div class="transport" style="margin:0;">
+              <button id="prevBtn" title="Previous"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6L18 6v12z"/></svg></button>
+              <button id="playBtn" class="play-btn" title="Play/Pause"><svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button id="nextBtn" title="Next"><svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 6l8.5 6L6 18z"/></svg></button>
+            </div>
+            <div class="vol-wrap">
+              <svg viewBox="0 0 24 24"><path d="M5 9v6h4l5 5V4l-5 5H5z"/></svg>
+              <input type="range" class="vol" id="vol" min="0" max="100" value="70">
+            </div>
+          </div>
+
+          <div class="lower-row" style="margin-top:14px;">
+            <div style="display:flex; gap:8px;">
+              <button class="note-btn" id="noteBtn">✎ Pin a Groove Note</button>
+              <button class="note-btn fav-btn" id="favBtn" title="Add to Favorites"></button>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle on" id="autoplayToggle"><div class="dot"></div>Autoplay</div>
+              <div class="toggle" id="shuffleToggle"><div class="dot"></div>Shuffle</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="queue" style="margin-top:22px;">
+          <h4>Up Next</h4>
+          <div id="queueList"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: vinyl + viz -->
+      <div class="vinyl-wrap">
+        <div class="vinyl-frame">
+          <div class="vinyl" id="vinyl"></div>
+          <div class="tonearm" id="tonearm">
+            <svg viewBox="0 0 100 100">
+              <circle cx="85" cy="15" r="7" fill="#d9b871"/>
+              <rect x="80" y="14" width="4" height="60" rx="2" fill="#0c1a15" transform="rotate(20 82 44)"/>
+              <circle cx="45" cy="66" r="4" fill="#c15c7c"/>
+            </svg>
+          </div>
+        </div>
+        <canvas id="viz" width="200" height="44"></canvas>
+        <div class="rpm-tag" id="statusTag">paused</div>
+      </div>
+
+    </div>
+
+    <!-- Browse / Charts / Favorites — filled in and toggled by script.js -->
+    <div class="page-view" id="viewBrowse"></div>
+    <div class="page-view" id="viewCharts"></div>
+    <div class="page-view" id="viewFavorites"></div>
+
+  </main>
+</div>
+
+<audio id="audio"></audio>
+
+<!-- hidden file inputs used by the Add Music flow -->
+<input type="file" id="audioFileInput" accept="audio/*" style="display:none;">
+<input type="file" id="artFileInput" accept="image/*" style="display:none;">
+
+<!-- shared modal window -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-card" id="modalCard"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
