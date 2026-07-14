@@ -29,7 +29,7 @@ Each track can have its own cover image too. If you don't set one, Groove genera
 
 ## Features
 
-**Playlists.** Create as many as you like, rename nothing (yet), and delete any playlist you no longer want. Groove always keeps at least one playlist around so you're never left without a home for your tracks.
+**Playlists.** Create as many as you like, and delete any playlist you no longer want. Groove always keeps at least one playlist around so you're never left without a home for your tracks.
 
 **Groove Notes.** Pin a short note to any point in a song. A small gold marker appears on the seek bar. Hover it to read the note, click it to jump straight to that moment. Useful for marking a favorite bridge, a lyric you want to remember, or a cue for a DJ set.
 
