@@ -501,7 +501,7 @@ function switchPlaylist(name){
   switchView('now-playing');
   closeSidebar();
   const track = currentTrack();
-  if(track) loadTrack(false);
+  if(track) loadTrack(true);
   else { trackTitle.textContent = '—'; trackArtist.textContent = 'Add some music to get started'; renderQueue(); updateFavBtnUI(); }
 }
 newPlaylistBtn.addEventListener('click', () => { closeSidebar(); openNewPlaylistModal(); });
